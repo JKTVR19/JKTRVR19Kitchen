@@ -1,0 +1,8 @@
+/build
+/nbproject
+/dist
+build.xml
+books
+readers
+histories
+users
