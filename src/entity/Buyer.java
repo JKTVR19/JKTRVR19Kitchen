@@ -5,15 +5,19 @@
  */
 package entity;
 
+import java.io.Serializable;
+
+
+
 /**
  *
  * @author pupil
  */
-public class Buyer {
+public class Buyer implements Serializable {
     private String firstname;
     private String lastname;
     private String phone;
-    private int cash;
+    private int wallet;
 
     public Buyer() {
     }
@@ -22,7 +26,7 @@ public class Buyer {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
-        this.cash = cash;
+        this.wallet = wallet;
     }
 
     public String getFirstname() {
@@ -50,11 +54,11 @@ public class Buyer {
     }
 
     public int getCash() {
-        return cash;
+        return wallet;
     }
 
     public void setCash(int cash) {
-        this.cash = cash;
+        this.wallet = cash;
     }
 
     @Override
@@ -63,7 +67,7 @@ public class Buyer {
                 + "firstname=" + firstname 
                 + ", lastname=" + lastname 
                 + ", phone=" + phone 
-                + ", cash=" + cash 
+                + ", cash=" + wallet 
                 + '}';
     }
     

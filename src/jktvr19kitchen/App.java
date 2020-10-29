@@ -8,6 +8,9 @@ package jktvr19kitchen;
 import entity.Buyer;
 import entity.Furniture;
 import java.util.Scanner;
+import tools.BuyerManager;
+import tools.BuyersStorageManager;
+import static javafx.scene.input.KeyCode.R;
 
 /**
  *
@@ -17,6 +20,11 @@ public class App {
         
         private Scanner scanner = new Scanner(System.in);
         private Buyer[] buyers = new Buyer[10];
+        
+        public App() {
+        BuyersStorageManager bsm = new BuyersStorageManager();
+        buyers = bsm.loadBuyersFromFile();
+    }
         
     public void run() {
         System.out.println("<<<<<<<<kitchen furniture store>>>>>>>>>");
@@ -46,8 +54,8 @@ public class App {
                 case "1":
                     System.out.println("---Add kitchen furniture---");
                     Furniture furniture = new Furniture("Table", "white", "XL", 100);
-//                    System.out.printf("Added furniture: "+furniture.getName());
-//                    System.out.println(furniture.toString());
+                    System.out.printf("Added furniture: "+furniture.getName());
+                    System.out.println(furniture.toString());
                     
                     break;
                 case "2":
@@ -58,8 +66,18 @@ public class App {
 //                    Buyer buyer = new Buyer("John", "Johnson", "123456789", 888);
 //                    System.out.println(buyer.toString());
 //                    buyers[] = buyer;
-                    Buyer buyer1 = new Buyer("Anton", "Antonov", "123456789", 999);
-                    buyers[1] = buyer1;
+//                    Buyer buyer1 = new Buyer("Anton", "Antonov", "123456789", 999);
+//                    buyers[1] = buyer1;
+                    BuyerManager buyerManager = new BuyerManager(); 
+                    Buyer buyer = buyerManager.addBuyer();
+                    for (int i = 0; i < buyers.length; i++) {
+                        if(buyers[i] == null){
+                            buyers[i] = buyer;
+                            break;
+                        }
+                    }
+                    BuyersStorageManager buyersStorageManager = new BuyersStorageManager();
+                    buyersStorageManager.saveBuyersToFile(buyers);
                     
                     break;
                 case "4":
