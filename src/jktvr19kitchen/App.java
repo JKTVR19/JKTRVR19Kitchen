@@ -42,7 +42,7 @@ public class App {
     }
         
     public void run() {
-        System.out.println("<<<<<<<<kitchen furniture store>>>>>>>>>");
+        System.out.println("<<<   kitchen furniture store   >>>");
         boolean repeat = true;
         do {            
             
