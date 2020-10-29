@@ -17,12 +17,12 @@ public class Buyer implements Serializable {
     private String firstname;
     private String lastname;
     private String phone;
-    private int wallet;
+    private String wallet;
 
     public Buyer() {
     }
 
-    public Buyer(String firstname, String lastname, String phone, int cash) {
+    public Buyer(String firstname, String lastname, String phone, String cash) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
@@ -53,12 +53,12 @@ public class Buyer implements Serializable {
         this.phone = phone;
     }
 
-    public int getCash() {
+    public String getWallet() {
         return wallet;
     }
 
-    public void setCash(int cash) {
-        this.wallet = cash;
+    public void setWallet(String wallet) {
+        this.wallet = wallet;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class Buyer implements Serializable {
                 + "firstname=" + firstname 
                 + ", lastname=" + lastname 
                 + ", phone=" + phone 
-                + ", cash=" + wallet 
+                + ", wallet=" + wallet 
                 + '}';
     }
     

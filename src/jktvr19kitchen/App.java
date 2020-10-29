@@ -5,12 +5,14 @@
  */
 package jktvr19kitchen;
 
+import tools.FurnitureManager;
+import tools.FurnituresStorageManager;
 import entity.Buyer;
 import entity.Furniture;
 import java.util.Scanner;
 import tools.BuyerManager;
 import tools.BuyersStorageManager;
-import static javafx.scene.input.KeyCode.R;
+//import static javafx.scene.input.KeyCode.R;
 
 /**
  *
@@ -20,10 +22,20 @@ public class App {
         
         private Scanner scanner = new Scanner(System.in);
         private Buyer[] buyers = new Buyer[10];
+        private Furniture[] furnitures = new Furniture[10];
         
         public App() {
         BuyersStorageManager bsm = new BuyersStorageManager();
-        buyers = bsm.loadBuyersFromFile();
+//        buyers = bsm.loadBuyersFromFile();
+        Buyer[] loadedBuyers = bsm.loadBuyersFromFile();
+        if(loadedBuyers != null){
+            buyers = loadedBuyers;
+        }
+        FurnituresStorageManager fsm = new FurnituresStorageManager();
+        Furniture[] loadedFurnitures = fsm.loadFurnituresFromFile();
+        if(loadedFurnitures != null){
+            furnitures = loadedFurnitures;
+        }
     }
         
     public void run() {
@@ -52,10 +64,20 @@ public class App {
                     repeat = false;
                     break;
                 case "1":
-                    System.out.println("---Add kitchen furniture---");
-                    Furniture furniture = new Furniture("Table", "white", "XL", 100);
-                    System.out.printf("Added furniture: "+furniture.getName());
-                    System.out.println(furniture.toString());
+//                    System.out.println("---Add kitchen furniture---");
+//                    Furniture furniture = new Furniture("Table", "white", "XL", 100);
+//                    System.out.printf("Added furniture: "+furniture.getName());
+//                    System.out.println(furniture.toString());
+                    FurnitureManager furnitureManager = new FurnitureManager(); 
+                    Furniture furniture = furnitureManager.addFurniture();
+                    for (int i = 0; i < furnitures.length; i++) {
+                        if(furnitures[i] == null){
+                            furnitures[i] = furniture;
+                            break;
+                        }
+                    }
+                    FurnituresStorageManager furnituresStorageManager = new FurnituresStorageManager();
+                    furnituresStorageManager.saveFurnituresToFile(furnitures);
                     
                     break;
                 case "2":
@@ -93,11 +115,9 @@ public class App {
                 case "5":
                     System.out.println("---Buyer buy goods ---");
                     break;
-////                case "6":
-////                    System.out.println("--- Вернуть книгу ---");
-//                    break;
+
                 default:
-                    System.out.println("Нет такой задачи");;
+                    System.out.println("There is no such acction");;
                 }
             }
         while (repeat);

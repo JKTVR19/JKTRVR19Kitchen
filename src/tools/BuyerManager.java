@@ -15,14 +15,16 @@ import java.util.Scanner;
 public class BuyerManager {
     public Buyer addBuyer (){
         Buyer  buyer = new Buyer ();
-        System.out.println("---Зарегистриролвать читателя---");
-        System.out.println("Введите имя: ");
+        System.out.println("---Register Buyer---");
+        System.out.println("Set firstname: ");
         Scanner scanner = new Scanner(System.in);
         buyer.setFirstname(scanner.nextLine());
-        System.out.println("Введите фамилию: ");
+        System.out.println("Set lastname: ");
         buyer.setLastname(scanner.nextLine());
-        System.out.println("Введите телефон: ");
+        System.out.println("Set phone: ");
         buyer.setPhone(scanner.nextLine());
+        System.out.println("Set wallet(cash): ");
+        buyer.setWallet(scanner.nextLine()); // was erroor: Ineger changed to String
 
         return buyer;
     }

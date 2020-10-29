@@ -5,11 +5,13 @@
  */
 package entity;
 
+import java.io.Serializable;
+
 /**
  *
  * @author pupil
  */
-public class Furniture {
+public class Furniture implements Serializable {
     private String name;
     private String color;
     private String size;
