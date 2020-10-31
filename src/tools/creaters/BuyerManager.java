@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tools;
+package tools.creaters;
 
 import entity.Buyer;
 import java.util.Scanner;
@@ -35,6 +35,11 @@ public class BuyerManager {
             }
         } while (true);
         buyer.setWallet(wallet); // was erroor: Ineger changed to String
+        System.out.println("Set login:");
+        buyer.setLogin(scanner.nextLine());
+        System.out.println("Set password:");
+        buyer.setPassword(scanner.nextLine());        
+        
         return buyer;
     }
 }

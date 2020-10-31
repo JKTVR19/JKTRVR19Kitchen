@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package jktvr19kitchen;
-
+import entity.Buyer;
+import tools.login.LoginManager;
 /**
  *
  * @author pupil

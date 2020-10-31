@@ -5,15 +5,16 @@
  */
 package jktvr19kitchen;
 
-import tools.FurnitureManager;
-import tools.FurnituresStorageManager;
+import tools.creaters.FurnitureManager;
+import tools.savers.FurnituresStorageManager;
 import entity.Buyer;
 import entity.Furniture;
 import entity.History;
 import java.util.Scanner;
-import tools.BuyerManager;
-import tools.BuyersStorageManager;
-import tools.UserCardManager;
+import tools.creaters.BuyerManager;
+import tools.savers.BuyersStorageManager;
+import tools.creaters.UserCardManager;
+import tools.login.LoginManager;
 //import static javafx.scene.input.KeyCode.R;
 
 /**
@@ -26,6 +27,7 @@ public class App {
         private Buyer[] buyers = new Buyer[10];
         private Furniture[] furnitures = new Furniture[10];
         private History[] histories = new History[10];
+        Buyer user = new Buyer();
         
         public App() {
         BuyersStorageManager bsm = new BuyersStorageManager();
@@ -43,6 +45,28 @@ public class App {
         
     public void run() {
         System.out.println("<<<   kitchen furniture store   >>>");
+//-------- user login------------------
+        LoginManager loginManager = new LoginManager();
+        Buyer logUser = loginManager.login(buyers);
+        if(logUser == null){
+            System.out.println("--- Add Buyer with login ---");
+            BuyerManager buyerManager = new BuyerManager(); 
+            Buyer buyer = buyerManager.addBuyer();
+            for (int i = 0; i < buyers.length; i++) {
+                if(buyers[i] == null){
+                    buyers[i] = buyer;
+                    break;
+                }
+            }
+            BuyersStorageManager buyersStorageManager = new BuyersStorageManager();
+            buyersStorageManager.saveBuyersToFile(buyers);
+            System.out.println("---------------------");
+            do{
+                logUser = loginManager.login(buyers);
+            }while(logUser== null);
+        }
+        this.user = logUser;
+//-------- user login------------------
         boolean repeat = true;
         do {            
             
@@ -125,7 +149,8 @@ public class App {
                 case "5":
                     System.out.println("---Buyer buy goods ---");
                     UserCardManager userCardManager = new UserCardManager();
-                    History history = userCardManager.giveFurniture(furnitures, buyers);
+//                    History history = userCardManager.giveFurniture(furnitures, buyers);
+                    History history = userCardManager.giveFurniture(furnitures, this.user);
                     for (int i = 0; i < histories.length; i++) {
                         if(histories[i] == null){
                             histories[i] = history;

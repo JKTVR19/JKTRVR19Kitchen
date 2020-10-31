@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tools;
+package tools.creaters;
 
 import entity.Buyer;
 import entity.Furniture;
@@ -53,10 +53,11 @@ public class UserCardManager {
         buyer.setWallet(wallet);          
         //-----------
         
-         history.setFurniture(furniture);
-         history.setBuyer(buyer);
-         history.setTakeOnDate(calendar.getTime());
-        return history;
+//         history.setFurniture(furniture);
+//         history.setBuyer(buyer);
+//         history.setTakeOnDate(calendar.getTime());
+//        return history;
+        return new History(furniture, buyer, calendar.getTime(), null);
     }
     
 }

@@ -1,17 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package tools;
+package tools.savers;
 
-/**
- *
- * @author Juri
- */
-
-
-import entity.Furniture;
+import entity.History;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,40 +8,49 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-public class FurnituresStorageManager {
-    public void saveFurnituresToFile(Furniture[] furnitures) {
-        String fileName = "furnitures";
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author Juri
+ */
+public class HistoriesStorageManager {
+    public void saveHistoriesToFile(History[] histories) {
+        String fileName = "histories";
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
         try {
             fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(furnitures);
+            oos.writeObject(histories);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("No such file");
         } catch (IOException ex) {
-            System.out.println("Оinput/output error");
+            System.out.println("input/output error");
         }
     }
-    public Furniture[] loadFurnituresFromFile() {
+    public History[] loadHistoriesFromFile() {
         //Book[] books = new book[10];
-        Furniture[] furnitures = null;
-        String fileName = "furnitures";
+        History[] histories = null;
+        String fileName = "histories";
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream(fileName);
             ois = new ObjectInputStream(fis);
-            return (Furniture[]) ois.readObject();
+            return (History[]) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("No such file"); 
         } catch (IOException ex){
-            System.out.println("Оinput/output error");
+            System.out.println("input/output error");
         } catch (ClassNotFoundException ex) {
             System.out.println("No such class");
         }
-        return furnitures;
+        return histories;
     }
-    
 }
