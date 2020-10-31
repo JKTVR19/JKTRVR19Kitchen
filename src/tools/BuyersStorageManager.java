@@ -44,8 +44,8 @@ public class BuyersStorageManager {
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
-            fis = new FileIntputStream(fileName);
-            ois = new ObjectIntputStream(fis);
+            fis = new FileInputStream(fileName);
+            ois = new ObjectInputStream(fis);
             return (Buyer[]) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("No such file");

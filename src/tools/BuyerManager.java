@@ -24,8 +24,17 @@ public class BuyerManager {
         System.out.println("Set phone: ");
         buyer.setPhone(scanner.nextLine());
         System.out.println("Set wallet(cash): ");
-        buyer.setWallet(scanner.nextLine()); // was erroor: Ineger changed to String
-
+        int wallet = 0;
+        do {            
+            String walletStr = scanner.nextLine();
+            try {
+                wallet = Integer.parseInt(walletStr);
+                break;
+            } catch (Exception e) {
+                System.out.println("Set number");
+            }
+        } while (true);
+        buyer.setWallet(wallet); // was erroor: Ineger changed to String
         return buyer;
     }
 }

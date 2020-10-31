@@ -28,7 +28,7 @@ public class UserCardManager {
                 n++;
             }
         }
-         System.out.print("Choose a reader number: ");    
+         System.out.print("Choose a buyer number: ");    
          Scanner scanner = new Scanner(System.in);
          int buyerNumber = scanner.nextInt();
          scanner.nextLine();// carrige returne after Int
@@ -41,23 +41,18 @@ public class UserCardManager {
                             j++;
                         }
                     }
-//        System.out.print("Choose a reader number: ");    
-//        Scanner scanner = new Scanner(System.in);
-//        int buyerNumber = scanner.nextInt();
-//        scanner.nextLine();
-//        Buyer buyer = buyers[buyerNumber - 1];
-//        System.out.println("--- List of books ---");
-//        n = 0;
-//        for (Furniture f : furnitures) 
-//            if(f != null){
-//                System.out.println(n+1+". "+f.toString());
-//                n++;
-//            }
-//        }
+
          System.out.print("Choose a furniture number: ");    
          int furnitureNumber = scanner.nextInt();
          Furniture furniture = furnitures[furnitureNumber - 1];
          Calendar calendar = new GregorianCalendar();
+         
+        //------------emptying the buyers wallet----
+        
+        int wallet =buyer.getWallet()- furniture.getPrice();        
+        buyer.setWallet(wallet);          
+        //-----------
+        
          history.setFurniture(furniture);
          history.setBuyer(buyer);
          history.setTakeOnDate(calendar.getTime());

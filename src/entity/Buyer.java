@@ -17,12 +17,12 @@ public class Buyer implements Serializable {
     private String firstname;
     private String lastname;
     private String phone;
-    private String wallet;
+    private int wallet;
 
     public Buyer() {
     }
 
-    public Buyer(String firstname, String lastname, String phone, String cash) {
+    public Buyer(String firstname, String lastname, String phone, int wallet) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
@@ -53,11 +53,11 @@ public class Buyer implements Serializable {
         this.phone = phone;
     }
 
-    public String getWallet() {
+    public int getWallet() {
         return wallet;
     }
 
-    public void setWallet(String wallet) {
+    public void setWallet(int wallet) {
         this.wallet = wallet;
     }
 
@@ -70,7 +70,7 @@ public class Buyer implements Serializable {
                 + ", wallet=" + wallet 
                 + '}';
     }
-    
+
     
     
 }

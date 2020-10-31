@@ -15,16 +15,26 @@ import java.util.Scanner;
 public class FurnitureManager {
     public Furniture addFurniture() {
         Furniture furniture = new Furniture();
-        System.out.println("--- Добавить книгу ---");
-        System.out.println("Введите название:");
+        System.out.println("---Add Furniture---");
+        System.out.println("Set name:");
         Scanner scanner = new Scanner(System.in);
         furniture.setName(scanner.nextLine());
-        System.out.println("Введите автора:");
+        System.out.println("Set color:");
         furniture.setColor(scanner.nextLine());
-        System.out.println("Введите год издания:");
+        System.out.println("Set size:");
         furniture.setSize(scanner.nextLine());
-        System.out.println("Введите год издания:");
-        furniture.setPrice(scanner.nextInt());
+        System.out.println("Set price:");
+        int cash = 0;
+        do { 
+            String cashStr = scanner.nextLine(); 
+            try {
+                cash = Integer.parseInt(cashStr);
+                break;
+            } catch (Exception e) {
+                System.out.println("Set number");
+            }                             
+        } while (true);
+        furniture.setPrice(cash);
         return furniture;
     }
     

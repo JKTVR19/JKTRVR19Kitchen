@@ -58,7 +58,7 @@ public class App {
             System.out.println("6. ");
             System.out.println("7. Kitchen Furniture Sold List");
             
-            System.out.println("Select an action");
+            System.out.println("Select an action: _");
             String action = scanner.nextLine();
             System.out.println("=============================");
             switch (action){
@@ -85,6 +85,13 @@ public class App {
                     break;
                 case "2":
                     System.out.println("---List of kitchen furnitures---");
+                    int j = 0;
+                    for (Furniture f : furnitures) {
+                        if(f != null){
+                            System.out.println(j+1+". "+f.toString());
+                            j++;
+                        }
+                    }
                     break;
                 case "3":
                     System.out.println("---Add buyer---");
