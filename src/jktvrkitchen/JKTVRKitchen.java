@@ -3,21 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package jktvr19kitchen;
-import entity.Buyer;
-import tools.login.LoginManager;
+package jktvrkitchen;
+
 /**
  *
- * @author pupil
+ * @author Juri
  */
-public class JKTVR19Kitchen {
+public class JKTVRKitchen {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
+      public static void main(String[] args) {
+        
         App app = new App();
         app.run();
     }
-    
 }

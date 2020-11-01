@@ -5,59 +5,98 @@
  */
 package tools.creaters;
 
-import entity.Buyer;
 import entity.Furniture;
 import entity.History;
+import entity.Buyer;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 /**
  *
- * @author Juri
+ * @author Melnikov
  */
 public class UserCardManager {
-    public History giveFurniture(Furniture[] furnitures, Buyer[] buyers) {
-//        History history = null;
-        History history = new History();
-        System.out.println("--- List of Buyers ---");
-        int n = 0;
-        for (Buyer b : buyers) {
-            if(b != null){
-                System.out.println(n+1+". "+b.toString());
-                n++;
-            }
-        }
-         System.out.print("Choose a buyer number: ");    
-         Scanner scanner = new Scanner(System.in);
-         int buyerNumber = scanner.nextInt();
-         scanner.nextLine();// carrige returne after Int
-         Buyer buyer = buyers[buyerNumber - 1];
-         System.out.println("--- List of furniture ---");
-                    int j = 0;
-                    for (Furniture f : furnitures) {
-                        if(f != null){
-                            System.out.println(j+1+". "+f.toString());
-                            j++;
-                        }
-                    }
+    private Scanner scanner = new Scanner(System.in);
+    private FurnitureManager furnitureManager = new FurnitureManager();
+    private BuyerManager buyerManager = new BuyerManager();
 
-         System.out.print("Choose a furniture number: ");    
-         int furnitureNumber = scanner.nextInt();
-         Furniture furniture = furnitures[furnitureNumber - 1];
-         Calendar calendar = new GregorianCalendar();
-         
-        //------------emptying the buyers wallet----
+    public History checkOutFurniture(Furniture[] furnitures, Buyer[] buyers) {
+        System.out.println("--- List kitchen furniture ---");
+        int furnitureNumber;
+        do{
+            furnitureManager.printListFurnitures(furnitures);
+            System.out.print("Choose furniture number: ");    
+            String furnitureNumberStr = scanner.nextLine();
+            try {
+                furnitureNumber = Integer.parseInt(furnitureNumberStr);
+                if(furnitureNumber < 1 && furnitureNumber >= furnitures.length){
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Choose furniture number frome list above");
+            }
+        }while(true);
+        Furniture furniture = furnitures[furnitureNumber - 1];
+        int buyerNumber;
+        do{
+            System.out.println("--- Buyers list---");
+            buyerManager.printListBuyers(buyers);
+            System.out.print("Chose number of buyer: ");    
+            String buyerNumberStr = scanner.nextLine();
+            try {
+                buyerNumber = Integer.parseInt(buyerNumberStr);
+                if(buyerNumber < 1 && buyerNumber >= buyers.length){
+                    throw new Exception();
+                }
+                break;
+            } catch (Exception e) {
+                System.out.println("Choose buyer number from list above");
+            }
+        }while(true);
+        Buyer buyer = buyers[buyerNumber - 1];
+//------------emptying the buyers wallet----
         
         int wallet =buyer.getWallet()- furniture.getPrice();        
         buyer.setWallet(wallet);          
-        //-----------
-        
-//         history.setFurniture(furniture);
-//         history.setBuyer(buyer);
-//         history.setTakeOnDate(calendar.getTime());
-//        return history;
+//-------------------------------------------
+        Calendar calendar = new GregorianCalendar();
         return new History(furniture, buyer, calendar.getTime(), null);
     }
-    
+
+    public void returnFurniture(History[] histories) {
+        System.out.println("Solded furnitures:");
+        this.printListReadFurnitures(histories);
+        System.out.println("Select the furniture number to return: ");
+        int historyNumber = scanner.nextInt();
+        histories[historyNumber - 1].setReturnDate(new GregorianCalendar().getTime());
+    }
+
+    public void addHistoryToArray(History history, History[] histories) {
+        for (int i = 0; i < histories.length; i++) {
+            if(histories[i] == null){
+                histories[i] = history;
+                break;
+            }
+        } 
+    }
+
+    public void printListReadFurnitures(History[] histories) {
+        boolean notReadFurnitures = true;
+        for (int i = 0;i<histories.length;i++) {
+            if(histories[i] != null && histories[i].getReturnDate() == null){
+                System.out.printf("%d. Furbiture \"%s\" bought %s %s%n"
+                        ,i+1
+                        ,histories[i].getFurniture().getName()
+                        ,histories[i].getBuyer().getFirstname()
+                        ,histories[i].getBuyer().getLastname()
+                );
+                notReadFurnitures = false;
+            }
+        }
+        if(notReadFurnitures){
+            System.out.println("There is no sold furniture");
+        }
+    }
 }

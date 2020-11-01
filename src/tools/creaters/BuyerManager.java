@@ -10,36 +10,42 @@ import java.util.Scanner;
 
 /**
  *
- * @author Juri
+ * @author Melnikov
  */
 public class BuyerManager {
-    public Buyer addBuyer (){
-        Buyer  buyer = new Buyer ();
-        System.out.println("---Register Buyer---");
-        System.out.println("Set firstname: ");
+
+    public Buyer createBuyer() {
+        Buyer buyer = new Buyer();
+        System.out.println("--- Buyer registration ---");
+        System.out.println("Set Firstname:");
         Scanner scanner = new Scanner(System.in);
         buyer.setFirstname(scanner.nextLine());
-        System.out.println("Set lastname: ");
+        System.out.println("Set Lastname:");
         buyer.setLastname(scanner.nextLine());
-        System.out.println("Set phone: ");
+        System.out.println("Set Phone:");
         buyer.setPhone(scanner.nextLine());
-        System.out.println("Set wallet(cash): ");
-        int wallet = 0;
-        do {            
-            String walletStr = scanner.nextLine();
-            try {
-                wallet = Integer.parseInt(walletStr);
-                break;
-            } catch (Exception e) {
-                System.out.println("Set number");
-            }
-        } while (true);
-        buyer.setWallet(wallet); // was erroor: Ineger changed to String
-        System.out.println("Set login:");
-        buyer.setLogin(scanner.nextLine());
-        System.out.println("Set password:");
-        buyer.setPassword(scanner.nextLine());        
-        
+        System.out.println("Set Wallet:");
+        buyer.setWallet(scanner.nextInt());
         return buyer;
     }
+
+    public void addBuyerToArray(Buyer buyer, Buyer[] buyers) {
+        for (int i = 0; i < buyers.length; i++) {
+            if(buyers[i] == null){
+                buyers[i] = buyer;
+                break;
+            }
+        } 
+    }
+
+    public void printListBuyers(Buyer[] buyers) {
+        int n = 0;
+        for (Buyer r : buyers) {
+            if(r != null){
+                System.out.println(n+1+". "+r.toString());
+                n++;
+            }
+        }
+    }
+    
 }

@@ -7,8 +7,6 @@ package entity;
 
 import java.io.Serializable;
 
-
-
 /**
  *
  * @author pupil
@@ -18,19 +16,16 @@ public class Buyer implements Serializable {
     private String lastname;
     private String phone;
     private int wallet;
-    private String login;
-    private String password;
+
 
     public Buyer() {
     }
 
-    public Buyer(String firstname, String lastname, String phone, int wallet) { //, String login, String password
+    public Buyer(String firstname, String lastname, String phone, int wallet) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.phone = phone;
         this.wallet = wallet;
-//        this.login = login;
-//        this.password = password;
     }
 
     public String getFirstname() {
@@ -65,22 +60,6 @@ public class Buyer implements Serializable {
         this.wallet = wallet;
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     @Override
     public String toString() {
         return "Buyer{" 
@@ -88,11 +67,8 @@ public class Buyer implements Serializable {
                 + ", lastname=" + lastname 
                 + ", phone=" + phone 
                 + ", wallet=" + wallet 
-                + ", login=" + login 
-                + ", password=" + password 
                 + '}';
     }
 
-   
     
 }

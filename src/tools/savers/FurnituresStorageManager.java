@@ -5,12 +5,6 @@
  */
 package tools.savers;
 
-/**
- *
- * @author Juri
- */
-
-
 import entity.Furniture;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -19,7 +13,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+
+/**
+ *
+ * @author Melnikov
+ */
 public class FurnituresStorageManager {
+
     public void saveFurnituresToFile(Furniture[] furnitures) {
         String fileName = "furnitures";
         FileOutputStream fos = null;
@@ -32,7 +32,7 @@ public class FurnituresStorageManager {
         } catch (FileNotFoundException ex) {
             System.out.println("No such file");
         } catch (IOException ex) {
-            System.out.println("Оinput/output error");
+            System.out.println("Input/Output error");
         }
     }
     public Furniture[] loadFurnituresFromFile() {
@@ -48,7 +48,7 @@ public class FurnituresStorageManager {
         } catch (FileNotFoundException ex) {
             System.out.println("No such file"); 
         } catch (IOException ex){
-            System.out.println("Оinput/output error");
+            System.out.println("Input/Output error");
         } catch (ClassNotFoundException ex) {
             System.out.println("No such class");
         }

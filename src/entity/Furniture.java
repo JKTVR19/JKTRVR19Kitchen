@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author pupil
+  * @author pupil
  */
 public class Furniture implements Serializable {
     private String name;
@@ -68,7 +68,7 @@ public class Furniture implements Serializable {
                 + ", price=" + price 
                 + '}';
     }
-
-  
-     
+    
+    
+    
 }

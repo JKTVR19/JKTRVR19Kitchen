@@ -10,13 +10,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author Juri
+ * @author Melnikov
  */
 public class FurnitureManager {
-    public Furniture addFurniture() {
+
+    public Furniture createFurniture() {
         Furniture furniture = new Furniture();
-        System.out.println("---Add Furniture---");
-        System.out.println("Set name:");
+        System.out.println("---Add kitchen furniture---");
+        System.out.println("Enter the title (name):");
         Scanner scanner = new Scanner(System.in);
         furniture.setName(scanner.nextLine());
         System.out.println("Set color:");
@@ -24,18 +25,27 @@ public class FurnitureManager {
         System.out.println("Set size:");
         furniture.setSize(scanner.nextLine());
         System.out.println("Set price:");
-        int cash = 0;
-        do { 
-            String cashStr = scanner.nextLine(); 
-            try {
-                cash = Integer.parseInt(cashStr);
-                break;
-            } catch (Exception e) {
-                System.out.println("Set number");
-            }                             
-        } while (true);
-        furniture.setPrice(cash);
+        furniture.setPrice(scanner.nextInt());
         return furniture;
+    }
+
+    public void addFurnitureToArray(Furniture furniture, Furniture[] furnitures) {
+        for (int i = 0; i < furnitures.length; i++) {
+            if(furnitures[i] == null){
+                furnitures[i] = furniture;
+                break;
+            }
+        }    
+    }
+
+    public void printListFurnitures(Furniture[] furnitures) {
+        int j = 0;
+        for (Furniture b : furnitures) {
+            if(b != null){
+                System.out.println(j+1+". "+b.toString());
+                j++;
+            }
+        }
     }
     
 }

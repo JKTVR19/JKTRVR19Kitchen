@@ -5,7 +5,8 @@
  */
 package tools.savers;
 
-import entity.Buyer;
+import entity.Furniture;
+import entity.User;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,21 +14,21 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
+
 /**
  *
  * @author Melnikov
  */
-public class BuyersStorageManager {
+public class UsersStorageManager {
+    private String fileName = "users";
 
-    public void saveBuyersToFile(Buyer[] buyers) {
-        String fileName = "buyers";
+    public void saveUsersToFile(User[] users) {
         FileOutputStream fos = null;
         ObjectOutputStream oos = null;
-        
         try {
             fos = new FileOutputStream(fileName);
             oos = new ObjectOutputStream(fos);
-            oos.writeObject(buyers);
+            oos.writeObject(users);
             oos.flush();
         } catch (FileNotFoundException ex) {
             System.out.println("No such file");
@@ -35,16 +36,15 @@ public class BuyersStorageManager {
             System.out.println("Input/Output error");
         }
     }
-    public Buyer[] loadBuyersFromFile() {
-        //Reader[] readers = new Buyer[10];
-        Buyer[] buyers = null;
-        String fileName = "buyers";
+    public User[] loadUsersFromFile() {
+        //Book[] books = new book[10];
+        User[] users = null;
         FileInputStream fis = null;
         ObjectInputStream ois = null;
         try {
             fis = new FileInputStream(fileName);
             ois = new ObjectInputStream(fis);
-            return (Buyer[]) ois.readObject();
+            return (User[]) ois.readObject();
         } catch (FileNotFoundException ex) {
             System.out.println("No such file"); 
         } catch (IOException ex){
@@ -52,7 +52,7 @@ public class BuyersStorageManager {
         } catch (ClassNotFoundException ex) {
             System.out.println("No such class");
         }
-        return buyers;
+        return users;
     }
     
 }

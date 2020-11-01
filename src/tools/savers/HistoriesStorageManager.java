@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package tools.savers;
 
 import entity.History;
@@ -8,17 +13,13 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
- * @author Juri
+ * @author Melnikov
  */
 public class HistoriesStorageManager {
+
     public void saveHistoriesToFile(History[] histories) {
         String fileName = "histories";
         FileOutputStream fos = null;
@@ -31,7 +32,7 @@ public class HistoriesStorageManager {
         } catch (FileNotFoundException ex) {
             System.out.println("No such file");
         } catch (IOException ex) {
-            System.out.println("input/output error");
+            System.out.println("Input/Output error");
         }
     }
     public History[] loadHistoriesFromFile() {
@@ -47,10 +48,11 @@ public class HistoriesStorageManager {
         } catch (FileNotFoundException ex) {
             System.out.println("No such file"); 
         } catch (IOException ex){
-            System.out.println("input/output error");
+            System.out.println("Input/Output error");
         } catch (ClassNotFoundException ex) {
             System.out.println("No such class");
         }
         return histories;
     }
+    
 }
