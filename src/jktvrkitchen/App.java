@@ -17,6 +17,7 @@ import tools.creaters.FurnitureManager;
 import tools.savers.FurnituresStorageManager;
 import tools.savers.HistoriesStorageManager;
 import tools.creaters.UserCardManager;
+import tools.savers.UsersStorageManager;
 
 
 /**
@@ -38,6 +39,7 @@ public class App {
     private BuyersStorageManager buyersStorageManager = new BuyersStorageManager();
     private FurnituresStorageManager furnituresStorageManager = new FurnituresStorageManager();
     private HistoriesStorageManager historiesStorageManager = new HistoriesStorageManager();
+    private UsersStorageManager usersStorageManager = new UsersStorageManager();
     
     private User loggedInUser;
 
@@ -54,6 +56,11 @@ public class App {
         if(loaderHistories != null){
             histories = loaderHistories;
         }
+        User[] loaderUsers = usersStorageManager.loadUsersFromFile();
+        if(loaderUsers != null){
+            users = loaderUsers;
+        }
+        
     }
 
     public void run() {
