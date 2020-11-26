@@ -5,13 +5,11 @@
  */
 package security;
 
-import entity.Buyer;
 import entity.User;
+import factory.FacadeFactory;
 import java.util.Scanner;
-import tools.creaters.BuyerManager;
-import tools.creaters.UserManager;
-import tools.savers.BuyersStorageManager;
-import tools.savers.UsersStorageManager;
+import tools.manager.BuyerManager;
+import tools.manager.UserManager;
 
 /**
  *
@@ -21,35 +19,33 @@ public class SecureManager {
 private Scanner scanner = new Scanner(System.in);
 private UserManager userManager = new UserManager();
 private BuyerManager buyerManager = new BuyerManager();
-private UsersStorageManager usersStorageManager = new UsersStorageManager();
-private BuyersStorageManager buyersStorageManager = new BuyersStorageManager();
+//private FileManager storageManager = new FileManager();
 
-    public User checkInLogin(User[] users, Buyer[] buyers) {
+public static enum role {BUYER, MANAGER};
+
+    public User checkInLogin() {
         do{
-            System.out.println("YOUR CHOISE: ");
-            System.out.println("0. Close the program");
-            System.out.println("1. Registration");
-            System.out.println("2. Login to the system");
-            System.out.print("Enter the task number: ");
+            System.out.println("Ваш выбор: ");
+            System.out.println("0. Закрыть программу");
+            System.out.println("1. Регистрация");
+            System.out.println("2. Вход в систему");
+            System.out.print("Введите номер задачи: ");
             String task = scanner.nextLine();
             switch (task) {
                 case "0":
-                    System.out.println("bye Bye! :)");
+                    System.out.println("Пока! :)");
                     System.exit(0);
                     break;
                 case "1":
                     User user = userManager.createUser();
-                    userManager.addUserToArray(user, users);
-                    buyerManager.addBuyerToArray(user.getBuyer(), buyers);
-                    buyersStorageManager.saveBuyersToFile(buyers);
-                    usersStorageManager.saveUsersToFile(users);
+                    FacadeFactory.getUserFacade().create(user);
                     break;
                 case "2":
-                    User checkInUser = userManager.getCheckInUser(users);
+                    User checkInUser = userManager.getCheckInUser();
                     if(checkInUser == null) break;
                     return checkInUser;
                 default:
-                    System.out.println("No such action.");;
+                    System.out.println("Нет такой задачи.");;
             }
         }while(true);
     }
