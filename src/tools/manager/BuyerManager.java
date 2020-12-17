@@ -6,7 +6,7 @@
 package tools.manager;
 
 import entity.Buyer;
-import entity.facade.BuyerFacade;
+import entity.facade.BuyerrFacade;
 import factory.FacadeFactory;
 import java.util.List;
 import java.util.Scanner;
@@ -14,22 +14,40 @@ import java.util.Scanner;
 
 /**
  *
- * @author Melnikov
+ * @author JKTVR19Library
  */
 public class BuyerManager {
     
-    private BuyerFacade buyerFacade = FacadeFactory.getBuyerFacade();
+    private BuyerrFacade buyerFacade = FacadeFactory.getBuyerFacade();
 
     public Buyer createBuyer() {
         Buyer buyer = new Buyer();
-        System.out.println("--- Зарегистрировать покупателя ---");
-        System.out.println("Введите имя:");
+        System.out.println("--- Buyer regisration ---");
+        System.out.println("Enter first name:");
         Scanner scanner = new Scanner(System.in);
         buyer.setFirstname(scanner.nextLine());
-        System.out.println("Введите фамилию:");
+        System.out.println("Enter last name:");
         buyer.setLastname(scanner.nextLine());
-        System.out.println("Введите телефон:");
+        System.out.println("Enter phone:");
         buyer.setPhone(scanner.nextLine());
+//        System.out.println("Enter wallet:");
+//        buyer.setWallet(scanner.nextLine());
+        //-------------------
+        int numWallet;
+        do{
+            System.out.println("Enter wallet cash");
+            String strWallet = scanner.nextLine();
+            try {
+                numWallet = Integer.parseInt(strWallet);
+                break;
+            } catch (Exception e) {
+                System.out.println("Enter only numbers!");
+            }
+        }while(true);
+        buyer.setWallet(numWallet);
+//        furnitureFacade.create(furniture);
+//        return furniture;
+        //--------------*-----
         buyerFacade.create(buyer);
         return buyer;
     }
@@ -37,7 +55,7 @@ public class BuyerManager {
     public void printListBuyers() {
         List<Buyer> listBuyers = buyerFacade.findAll();
         if(listBuyers == null){
-            System.out.println("Нет покупателей");
+            System.out.println("No buyers");
             return;
         }
         for (Buyer r : listBuyers) {

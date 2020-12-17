@@ -5,7 +5,7 @@
  */
 package entity.facade;
 
-import entity.User;
+import entity.Buyer;
 import factory.ConnectSingleton;
 import javax.persistence.EntityManager;
 
@@ -13,10 +13,10 @@ import javax.persistence.EntityManager;
  *
  * @author JKTVR19Library
  */
-public class UserFacade extends AbstractFacade<User>{
-
-    public UserFacade() {
-        super(User.class);
+public class BuyerrFacade extends AbstractFacade<Buyer>{
+   
+    public BuyerrFacade() {
+        super(Buyer.class);
     }
 
     @Override

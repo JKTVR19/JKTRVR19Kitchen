@@ -13,7 +13,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author 
+ * @author Melnikov
  */
 public class HistoryFacade extends AbstractFacade<History>{
     

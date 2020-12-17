@@ -8,44 +8,44 @@ package tools.manager;
 import entity.Furniture;
 import entity.History;
 import entity.Buyer;
-import entity.facade.FurniteFacade;
+import entity.facade.FurnitureFacade;
 import entity.facade.HistoryFacade;
-import entity.facade.BuyerrFacade;
+import entity.facade.BuyerFacade;
 import factory.FacadeFactory;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Scanner;
-import jktvr19library.App;
+import jktvr19furniture.App;
 import security.SecureManager;
 
 /**
  *
- * @author JKTVR19Library
+ * @author Melnikov
  */
 public class UserCardManager {
     private Scanner scanner = new Scanner(System.in);
-    private FurniteManager furnitureManager = new FurniteManager();
+    private FurnitureManager furnitureManager = new FurnitureManager();
     private BuyerManager buyerManager = new BuyerManager();
-    private FurniteFacade furnitureFacade = FacadeFactory.getFurnitureFacade();
-    private BuyerrFacade buyerFacade = FacadeFactory.getBuyerFacade();
+    private FurnitureFacade furnitureFacade = FacadeFactory.getFurnitureFacade();
+    private BuyerFacade buyerFacade = FacadeFactory.getBuyerFacade();
     private HistoryFacade historyFacade = FacadeFactory.getHistoryFacade();
 
 
     public void checkOutFurniture() {
-        System.out.println("---List of furnitues---");
+        System.out.println("--- Список мебели ---");
         Long furnitureNumber;
         do{
             if(!furnitureManager.printListFurnitures()){
                 return;
             };
-            System.out.print("Enter furnire number: ");    
+            System.out.print("Выберите номер мебели: ");    
             String furnitureNumberStr = scanner.nextLine();
             try {
                 furnitureNumber = Long.parseLong(furnitureNumberStr);
                 break;
             } catch (Exception e) {
-                System.out.println("Choose number from list.");
+                System.out.println("Выберите номер из списка.");
             }
         }while(true);
         Furniture furniture = furnitureFacade.find(furnitureNumber);
@@ -53,15 +53,15 @@ public class UserCardManager {
         if(SecureManager.role.MANAGER.toString().equals(App.loggedInUser.getRole())){
             Long buyerNumber;
             do{
-                System.out.println("--- Buyers list ---");
+                System.out.println("--- Список читателей ---");
                 buyerManager.printListBuyers();
-                System.out.print("Choose buyers number: ");    
+                System.out.print("Выберите номер читателя: ");    
                 String buyerNumberStr = scanner.nextLine();
                 try {
                     buyerNumber = Long.parseLong(buyerNumberStr);
                     break;
                 } catch (Exception e) {
-                    System.out.println("Choose number from the list above");
+                    System.out.println("Выберите номер из указанного списка");
                 }
             }while(true);
             buyer = buyerFacade.find(buyerNumber);
@@ -74,27 +74,20 @@ public class UserCardManager {
     }
 
     public void returnFurniture() {
-        System.out.println("Solded furniyures:");
+        System.out.println("Полученная мебель:");
         if(this.printListReadFurnitures()){
             Long historyNumber;
             do{    
-               System.out.println("Choose number of reterned furniture: ");
+               System.out.println("Выберите номер возвращаемой мебели: ");
                 String historyNumberStr = scanner.nextLine();
                 try {
                     historyNumber = Long.parseLong(historyNumberStr);
                     break;
                 } catch (Exception e) {
-                    System.out.println("Choose number from thr list above");
+                    System.out.println("Выберите номер из указанного выше списка");
                 }
             }while(true);
-        //------------emptying the buyers wallet----
-        Buyer buyer = new Buyer();
-        Furniture furniture = new Furniture();
-//        BuyerrFacade buyerFacade1 = FacadeFactory.setBuyerFacade();
-            int wallet =buyer.getWallet()- furniture.getPrice();        
-             buyer.setWallet(wallet); 
-//             buyerFacade.create();
-        //-------------------------------------------------
+            
             History history = historyFacade.find(historyNumber);
             history.setReturnDate(new GregorianCalendar().getTime());
             historyFacade.edit(history);
@@ -108,11 +101,11 @@ public class UserCardManager {
         if(SecureManager.role.MANAGER.toString().equals(App.loggedInUser.getRole())){
             List<History> listHistories = historyFacade.findAll(true);
             if(listHistories == null){
-                System.out.println("No solded fyrnitures");
+                System.out.println("Полученной мебели нет");
                 return false;
             }
             for (int i = 0;i<listHistories.size();i++) {
-                System.out.printf("%d. Furniture \"%s\" bought %s %s%n"
+                System.out.printf("%d. Мебель \"%s\" получил %s %s%n"
                         ,listHistories.get(i).getId()
                         ,listHistories.get(i).getFurniture().getName()
                         ,listHistories.get(i).getBuyer().getFirstname()
@@ -122,11 +115,11 @@ public class UserCardManager {
         }else if(SecureManager.role.BUYER.toString().equals(App.loggedInUser.getRole())){
             List<History> listHistories = historyFacade.findAll(App.loggedInUser.getBuyer());
             if(listHistories == null){
-                System.out.println("No solded fyrnitures");
+                System.out.println("Поученной мебели нет");
                 return false;
             }
             for (int i = 0;i<listHistories.size();i++) {
-                System.out.printf("%d. Furniture \"%s\" bought %s %s%n"
+                System.out.printf("%d. Мебель \"%s\" получил %s %s%n"
                         ,listHistories.get(i).getId()
                         ,listHistories.get(i).getFurniture().getName()
                         ,listHistories.get(i).getBuyer().getFirstname()

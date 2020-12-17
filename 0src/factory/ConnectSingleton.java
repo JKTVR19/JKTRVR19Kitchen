@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 
 /**
  *
- * @author 
+ * @author Melnikov
  */
 public class ConnectSingleton {
     
@@ -19,7 +19,7 @@ private EntityManager em;
 private EntityManagerFactory emf;
     private static ConnectSingleton instance;
     private ConnectSingleton() {
-         emf = Persistence.createEntityManagerFactory("JKTVR19LibraryPU");
+         emf = Persistence.createEntityManagerFactory("JKTVR19KitchenPU");
          em = emf.createEntityManager();
     }
     public EntityManager getEntityManager(){

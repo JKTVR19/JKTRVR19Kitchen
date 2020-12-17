@@ -13,7 +13,7 @@ import tools.manager.UserManager;
 
 /**
  *
- * @author JKTVR19Library
+ * @author Melnikov
  */
 public class SecureManager {
 private Scanner scanner = new Scanner(System.in);
@@ -25,11 +25,11 @@ public static enum role {BUYER, MANAGER};
 
     public User checkInLogin() {
         do{
-            System.out.println("Your choose: ");
-            System.out.println("0. Close programm");
-            System.out.println("1. Regisration");
-            System.out.println("2. Login to the shop");
-            System.out.print("Enter the task number: ");
+            System.out.println("Ваш выбор: ");
+            System.out.println("0. Закрыть программу");
+            System.out.println("1. Регистрация");
+            System.out.println("2. Вход в систему");
+            System.out.print("Введите номер задачи: ");
             String task = scanner.nextLine();
             switch (task) {
                 case "0":
@@ -45,7 +45,7 @@ public static enum role {BUYER, MANAGER};
                     if(checkInUser == null) break;
                     return checkInUser;
                 default:
-                    System.out.println("There is no such task.");;
+                    System.out.println("Нет такой задачи.");;
             }
         }while(true);
     }

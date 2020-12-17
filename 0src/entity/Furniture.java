@@ -14,7 +14,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @color JKTVR19Library
+ * @author Melnikov
  */
 @Entity
 public class Furniture implements Serializable{
@@ -22,24 +22,21 @@ public class Furniture implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private String color;
     private String size;
-    private Integer price;
+    private Integer publishedYear;
 
     public Furniture() {
     }
 
-    public Furniture(String name, String color, String size, Integer price) {
+    public Furniture(String name, String size, Integer publishedYear) {
         this.name = name;
-        this.color = color;
-        this.color = size;
-        this.price = price;
+        this.size = size;
+        this.publishedYear = publishedYear;
     }
-    public Furniture(String name, String color, String size, String price) {
+    public Furniture(String name, String size, String publishedYear) {
         this.name = name;
-        this.color = color;
-        this.color = size;
-        setPrice(price);
+        this.size = size;
+        setPublishedYear(publishedYear);
     }
 
     public String getName() {
@@ -50,46 +47,38 @@ public class Furniture implements Serializable{
         this.name = name;
     }
 
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
     public String getSize() {
         return size;
     }
 
-    public void setSize(String color) {
-        this.color = size;
+    public void setSize(String size) {
+        this.size = size;
     }
 
-    public Integer getPrice() {
-        return price;
+    public Integer getPublishedYear() {
+        return publishedYear;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public void setPublishedYear(Integer publishedYear) {
+        this.publishedYear = publishedYear;
     }
-    public void setPrice(String price) {
+    public void setPublishedYear(String publishedYear) {
         try {
-            int priceInt = Integer.parseInt(price);
-            this.price = priceInt;
-            System.out.println("String "+price+" successfully converted to number");
+            int publishedYearInt = Integer.parseInt(publishedYear);
+            this.publishedYear = publishedYearInt;
+            System.out.println("Строка "+publishedYear+" успешно преобразована в число.");
         } catch (Exception e) {
-            System.out.println("Not numbers entered. Fields not chanded");
+            System.out.println("Введены не цифры. Поле не изменено");
         }
         
     }
 
     @Override
     public String toString() {
-        return "Furniture{" 
+        return "Furniture" 
                 + "name=" + name 
-                + ", color=" + color
-                + ", size=" + size
-                + ", price=" + price 
+                + ", size=" + size 
+                + ", publishedYear=" + publishedYear 
                 + '}';
     }
 
@@ -97,9 +86,8 @@ public class Furniture implements Serializable{
     public int hashCode() {
         int hash = 3;
         hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.color);
         hash = 97 * hash + Objects.hashCode(this.size);
-        hash = 97 * hash + Objects.hashCode(this.price);
+        hash = 97 * hash + Objects.hashCode(this.publishedYear);
         return hash;
     }
 
@@ -118,13 +106,10 @@ public class Furniture implements Serializable{
         if (!Objects.equals(this.name, other.name)) {
             return false;
         }
-        if (!Objects.equals(this.color, other.color)) {
-            return false;
-        }
         if (!Objects.equals(this.size, other.size)) {
             return false;
         }
-        if (!Objects.equals(this.price, other.price)) {
+        if (!Objects.equals(this.publishedYear, other.publishedYear)) {
             return false;
         }
         return true;

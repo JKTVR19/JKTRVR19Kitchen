@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 
 /**
  *
- * @author JKTVR19Library
+ * @author Melnikov
  */
 public class UserFacade extends AbstractFacade<User>{
 

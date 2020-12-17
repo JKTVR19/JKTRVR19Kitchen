@@ -5,7 +5,7 @@
  */
 package entity.facade;
 
-import entity.User;
+import entity.Furniture;
 import factory.ConnectSingleton;
 import javax.persistence.EntityManager;
 
@@ -13,16 +13,15 @@ import javax.persistence.EntityManager;
  *
  * @author JKTVR19Library
  */
-public class UserFacade extends AbstractFacade<User>{
-
-    public UserFacade() {
-        super(User.class);
+public class FurniteFacade extends AbstractFacade<Furniture>{
+    
+    public FurniteFacade() {
+        super(Furniture.class);
     }
-
+   
     @Override
     protected EntityManager getEntityManager() {
         ConnectSingleton connect = ConnectSingleton.getInstance();
         return connect.getEntityManager();
     }
-    
 }
