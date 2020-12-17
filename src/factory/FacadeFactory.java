@@ -19,7 +19,7 @@ import entity.facade.UserFacade;
  * @author Melnikov
  */
 public class FacadeFactory {
-    public static FurnitureFacade getBookFacade(){
+    public static FurnitureFacade getFurnitureFacade(){
         return new FurnitureFacade();
     }
     public static UserFacade getUserFacade(){

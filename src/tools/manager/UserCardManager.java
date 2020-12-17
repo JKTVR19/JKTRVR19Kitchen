@@ -26,8 +26,8 @@ import security.SecureManager;
 public class UserCardManager {
     private Scanner scanner = new Scanner(System.in);
     private FurnitureManager furnitureManager = new FurnitureManager();
-    private BuyerManager readerManager = new BuyerManager();
-    private FurnitureFacade furnitureFacade = FacadeFactory.getBookFacade();
+    private BuyerManager buyerManager = new BuyerManager();
+    private FurnitureFacade furnitureFacade = FacadeFactory.getFurnitureFacade();
     private BuyerFacade buyerFacade = FacadeFactory.getBuyerFacade();
     private HistoryFacade historyFacade = FacadeFactory.getHistoryFacade();
 
@@ -54,7 +54,7 @@ public class UserCardManager {
             Long buyerNumber;
             do{
                 System.out.println("--- Список читателей ---");
-                readerManager.printListBuyers();
+                buyerManager.printListBuyers();
                 System.out.print("Выберите номер читателя: ");    
                 String buyerNumberStr = scanner.nextLine();
                 try {

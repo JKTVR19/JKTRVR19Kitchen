@@ -17,7 +17,7 @@ import java.util.Scanner;
  * @author Melnikov
  */
 public class FurnitureManager {
-    private FurnitureFacade furnitureFacade = FacadeFactory.getBookFacade();
+    private FurnitureFacade furnitureFacade = FacadeFactory.getFurnitureFacade();
 
     public Furniture createFurniture() {
         Furniture furniture = new Furniture();

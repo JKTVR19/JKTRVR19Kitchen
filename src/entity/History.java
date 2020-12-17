@@ -37,9 +37,9 @@ public class History implements Serializable{
     public History() {
     }
 
-    public History(Furniture book, Buyer reader, Date takeOnDate, Date returnDate) {
-        this.furniture = book;
-        this.buyer = reader;
+    public History(Furniture furniture, Buyer buyer, Date takeOnDate, Date returnDate) {
+        this.furniture = furniture;
+        this.buyer = buyer;
         this.takeOnDate = takeOnDate;
         this.returnDate = returnDate;
     }
